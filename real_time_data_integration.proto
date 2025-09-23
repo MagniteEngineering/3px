@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package com.magnite.real_time_data.v1;
+
+// Response from third party Real Time Data Integrations
+message RealTimeDataIntegrationResponse {
+    // An unordered set of 'signals' the third party is interested in.
+	// These may be segments, deals, or other targeting entities, depending
+	// on the third party's configuration.
+    repeated string signals = 1;
+}
