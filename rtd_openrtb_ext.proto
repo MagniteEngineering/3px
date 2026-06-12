@@ -1,0 +1,201 @@
+//
+// OpenRTB Community Extensions (BidRequest side only)
+//
+// User.ext.eids is omitted due to being directly available in OpenRTB 2.6 as User.eids
+//
+
+syntax = "proto2";
+
+package com.magnite.real_time_data.openrtb.v2;
+
+import "openrtb.proto";
+
+message ImpCommExt {
+  message InterestGroupAuctionSupport {
+    optional int32 ae = 1 [default = 1];
+    optional int32 biddable = 2 [default = 0];
+  }
+
+  message SKAdNetwork {
+    message SKAdNetworkList {
+      optional int64 max = 1;
+      repeated int64 excl = 2;
+      repeated string addl = 3;
+
+      extensions 100 to 9999;
+    }
+
+    repeated string versions = 1;
+    optional string version = 2;
+    optional string sourceapp = 3;
+    repeated string skadnetids = 4;
+    optional SKAdNetworkList skadnetlist = 5;
+    optional int32 skoverlay = 6;
+
+    extensions 100 to 9999;
+  }
+
+  // BidRequest.imp.ext.igs
+  //
+  // https://github.com/InteractiveAdvertisingBureau/openrtb/extensions/community_extensions/Protected%20Audience%20Support.md
+  optional InterestGroupAuctionSupport igs = 1;
+
+  // BidRequest.imp.ext.gpid
+  //
+  // https://github.com/InteractiveAdvertisingBureau/openrtb/extensions/community_extensions/gpid.md
+  optional string gpid = 2;
+
+  // BidRequest.imp.ext.intrinsic
+  //
+  // https://github.com/InteractiveAdvertisingBureau/openrtb/extensions/community_extensions/intrinsic-in-game.md
+  optional int32 intrinsic = 3;
+
+  // BidRequest.imp.ext.tid
+  //
+  // https://github.com/InteractiveAdvertisingBureau/openrtb/extensions/community_extensions/per-imp-tids.md
+  optional string tid = 4;
+
+  // BidRequest.imp.ext.skadn
+  //
+  // https://github.com/InteractiveAdvertisingBureau/openrtb/extensions/community_extensions/skadnetwork.md
+  optional SKAdNetwork skadn = 5;
+
+  extend com.iabtechlab.openrtb.v2.BidRequest.Imp {
+    // BidRequest.imp.ext
+    optional ImpCommExt ext = 5301;
+  }
+}
+
+message DataCommExt {
+  // BidRequest.**.data.ext.segtax
+  //
+  // https://github.com/InteractiveAdvertisingBureau/openrtb/extensions/community_extensions/segtax.md
+  optional int64 segtax = 1;
+
+  // BidRequest.**.data.ext.cids
+  //
+  // https://github.com/InteractiveAdvertisingBureau/openrtb/extensions/community_extensions/extended-content-ids.md
+  repeated string cids = 2;
+
+  extend com.iabtechlab.openrtb.v2.BidRequest.Data {
+    // BidRequest.**.data.ext
+    optional DataCommExt ext = 5302;
+  }
+}
+
+message SegmentCommExt {
+  message AgenticAudience {
+    optional string ver = 1;
+    optional string vector = 2;
+    optional int32 dimension = 3;
+    optional string model = 4;
+    repeated int32 type = 5;
+  }
+
+  // BidRequest.user.data.segment.ext.aa
+  //
+  // https://github.com/InteractiveAdvertisingBureau/openrtb/extensions/community_extensions/agentic-audiences.md
+  optional AgenticAudience aa = 1;
+
+  extend com.iabtechlab.openrtb.v2.BidRequest.Data.Segment {
+    // BidRequest.user.data.segment.ext
+    optional SegmentCommExt ext = 5303;
+  }
+}
+
+message RegsCommExt {
+  message DSA {
+    message Transparency {
+      optional string domain = 1;
+      repeated int32 dsaparams = 2;
+    }
+
+    optional int32 dsarequired = 1;
+    optional int32 pubrender = 2;
+    optional int32 datatopub = 3;
+    repeated Transparency transparency = 4;
+  }
+
+  // BidRequest.regs.ext.gpc
+  //
+  // https://github.com/InteractiveAdvertisingBureau/openrtb/extensions/2.x_official_extensions/gpc.md
+  optional string gpc = 1;
+
+  // BidRequest.regs.ext.s22580
+  //
+  // https://github.com/InteractiveAdvertisingBureau/openrtb/extensions/community_extensions/ca-568.md
+  optional int32 s22580 = 2;
+
+  // BidRequest.regs.ext.dsa
+  //
+  // https://github.com/InteractiveAdvertisingBureau/openrtb/extensions/community_extensions/dsa_transparency.md
+  optional DSA dsa = 3;
+
+  extend com.iabtechlab.openrtb.v2.BidRequest.Regs {
+    // BidRequest.regs.ext
+    optional RegsCommExt ext = 5304;
+  }
+}
+
+message DeviceCommExt {
+  // BidRequest.device.ext.cdep
+  //
+  // https://github.com/InteractiveAdvertisingBureau/openrtb/extensions/community_extensions/deprecation_test_label.md
+  optional string cdep = 1;
+
+  // BidRequest.device.ext.ifa_type
+  //
+  // https://github.com/InteractiveAdvertisingBureau/openrtb/extensions/community_extensions/ifa_type.md
+  optional string ifa_type = 2;
+
+  extend com.iabtechlab.openrtb.v2.BidRequest.Device {
+    // BidRequest.device.ext
+    optional DeviceCommExt ext = 5305;
+  }
+}
+
+message UserCommExt {
+  message DigiTrust {
+    optional string id = 1;
+    optional int64 keyv = 2;
+  }
+
+  // BidRequest.user.ext.digitrust
+  //
+  // https://github.com/InteractiveAdvertisingBureau/openrtb/extensions/community_extensions/digitrust.md
+  optional DigiTrust digitrust = 1;
+
+  extend com.iabtechlab.openrtb.v2.BidRequest.User {
+    // BidRequest.user.ext
+    optional UserCommExt ext = 5306;
+  }
+}
+
+message ContentCommExt {
+  // BidRequest.*.content.ext.feedurls
+  //
+  // https://github.com/InteractiveAdvertisingBureau/openrtb/extensions/community_extensions/urls-brand-safety.md
+  repeated string feedurls = 1;
+
+  extend com.iabtechlab.openrtb.v2.BidRequest.Content {
+    // BidRequest.*.content.ext
+    optional ContentCommExt ext = 5307;
+  }
+}
+
+message Prodfeed {
+  optional string id = 1;
+  optional string domain = 2;
+  repeated string aprod = 3;
+  repeated string bprod = 4;
+  repeated string aprodcat = 5;
+
+  extensions 100 to 9999;
+
+  extend.com.iabtechlab.openrtb.v2.BidRequest {
+    // BidRequest.prodfeed
+    //
+    // https://github.com/InteractiveAdvertisingBureau/openrtb/extensions/community_extensions/pla.md
+    optional Prodfeed prodfeed = 5308;
+  }
+}
