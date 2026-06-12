@@ -62,7 +62,7 @@ message ImpCommExt {
 
   extend com.iabtechlab.openrtb.v2.BidRequest.Imp {
     // BidRequest.imp.ext
-    optional ImpCommExt ext = 5301;
+    optional ImpCommExt ext = 7301;
   }
 }
 
@@ -79,7 +79,7 @@ message DataCommExt {
 
   extend com.iabtechlab.openrtb.v2.BidRequest.Data {
     // BidRequest.**.data.ext
-    optional DataCommExt ext = 5302;
+    optional DataCommExt ext = 7302;
   }
 }
 
@@ -99,7 +99,7 @@ message SegmentCommExt {
 
   extend com.iabtechlab.openrtb.v2.BidRequest.Data.Segment {
     // BidRequest.user.data.segment.ext
-    optional SegmentCommExt ext = 5303;
+    optional SegmentCommExt ext = 7303;
   }
 }
 
@@ -133,7 +133,7 @@ message RegsCommExt {
 
   extend com.iabtechlab.openrtb.v2.BidRequest.Regs {
     // BidRequest.regs.ext
-    optional RegsCommExt ext = 5304;
+    optional RegsCommExt ext = 7304;
   }
 }
 
@@ -150,7 +150,7 @@ message DeviceCommExt {
 
   extend com.iabtechlab.openrtb.v2.BidRequest.Device {
     // BidRequest.device.ext
-    optional DeviceCommExt ext = 5305;
+    optional DeviceCommExt ext = 7305;
   }
 }
 
@@ -167,7 +167,7 @@ message UserCommExt {
 
   extend com.iabtechlab.openrtb.v2.BidRequest.User {
     // BidRequest.user.ext
-    optional UserCommExt ext = 5306;
+    optional UserCommExt ext = 7306;
   }
 }
 
@@ -179,7 +179,7 @@ message ContentCommExt {
 
   extend com.iabtechlab.openrtb.v2.BidRequest.Content {
     // BidRequest.*.content.ext
-    optional ContentCommExt ext = 5307;
+    optional ContentCommExt ext = 7307;
   }
 }
 
@@ -196,6 +196,6 @@ message Prodfeed {
     // BidRequest.prodfeed
     //
     // https://github.com/InteractiveAdvertisingBureau/openrtb/extensions/community_extensions/pla.md
-    optional Prodfeed prodfeed = 5308;
+    optional Prodfeed prodfeed = 7308;
   }
 }
