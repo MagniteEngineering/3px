@@ -8,7 +8,7 @@ syntax = "proto2";
 
 package com.magnite.real_time_data.openrtb.v2;
 
-import "openrtb.proto";
+import "com/iabtechlab/openrtb/v2/openrtb.proto";
 
 message ImpCommExt {
   message InterestGroupAuctionSupport {
@@ -97,7 +97,7 @@ message SegmentCommExt {
   // https://github.com/InteractiveAdvertisingBureau/openrtb/extensions/community_extensions/agentic-audiences.md
   optional AgenticAudience aa = 1;
 
-  extend com.iabtechlab.openrtb.v2.BidRequest.Data.Segment {
+  extend com.iabtechlab.openrtb.v2.BidRequest.Segment {
     // BidRequest.user.data.segment.ext
     optional SegmentCommExt mgni_ext = 7303;
   }
